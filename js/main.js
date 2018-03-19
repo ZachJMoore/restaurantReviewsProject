@@ -1,3 +1,22 @@
+if (navigator.serviceWorker) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').then(function (reg) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            console.log()
+            reg.addEventListener("updatefound", function(){
+                if (reg.waiting){
+                    reg.waiting.postMessage({action: "skipWaiting"})
+                    window.location.reload()
+                }
+            })
+        }, function (err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+}
+
 let restaurants,
     neighborhoods,
     cuisines
