@@ -183,8 +183,8 @@ if (navigator.serviceWorker) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js').then(function (reg) {
             // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', reg.scope);
-            console.log(reg)
+            console.log("ServiceWorker registration successful");
+            //if there is a worker currently waiting, skip waiting and reload the page. this is only checked at page startup as to not disrupt users
             if (reg.waiting) {
                 reg.waiting.postMessage({
                     action: "skipWaiting"
@@ -193,7 +193,7 @@ if (navigator.serviceWorker) {
             }
         }, function (err) {
             // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
+            console.log(err);
         });
     });
 }

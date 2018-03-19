@@ -1,5 +1,5 @@
-console.log("SW startup");
-let staticCacheName = "cache-v17";
+console.log("sw started");
+let staticCacheName = "cache-v1";
 let itemsToCache = [
     "/",
     "index.html",
@@ -22,6 +22,7 @@ let itemsToCache = [
     "https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2"
 ]
 
+//cache everything in itemsToCache
 self.addEventListener('install', function (event) {
     console.log("SW installed");
     event.waitUntil(
@@ -31,6 +32,7 @@ self.addEventListener('install', function (event) {
     )
 });
 
+//delete all the old caches
 self.addEventListener('activate', function (event) {
     event.waitUntil(
         caches.keys().then(function (cacheNames) {
@@ -46,6 +48,7 @@ self.addEventListener('activate', function (event) {
     );
 });
 
+//use cached items or fetch from the network
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
@@ -59,6 +62,7 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
+//skip waiting if message is sent to sw
 self.addEventListener("message", (event) => {
     if (event.data.action === "skipWaiting") {
         self.skipWaiting()
