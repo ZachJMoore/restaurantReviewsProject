@@ -1,5 +1,5 @@
 console.log("SW startup");
-let staticCacheName = "cache-v8";
+let staticCacheName = "cache-v17";
 let itemsToCache = [
     "/",
     "index.html",
