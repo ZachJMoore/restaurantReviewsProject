@@ -1,14 +1,13 @@
-
 let restaurants,
     neighborhoods,
     cuisines
-var map
-var markers = []
+let map;
+let markers = [];
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
     fetchNeighborhoods();
     fetchCuisines();
 });
@@ -25,15 +24,15 @@ fetchNeighborhoods = () => {
             fillNeighborhoodsHTML();
         }
     });
-}
+};
 
 /**
  * Set neighborhoods HTML.
  */
 fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
-    const select = document.getElementById('neighborhoods-select');
+    const select = document.getElementById("neighborhoods-select");
     neighborhoods.forEach(neighborhood => {
-        const option = document.createElement('option');
+        const option = document.createElement("option");
         option.innerHTML = neighborhood;
         option.value = neighborhood;
         select.append(option);
@@ -58,10 +57,10 @@ fetchCuisines = () => {
  * Set cuisines HTML.
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
-    const select = document.getElementById('cuisines-select');
+    const select = document.getElementById("cuisines-select");
 
     cuisines.forEach(cuisine => {
-        const option = document.createElement('option');
+        const option = document.createElement("option");
         option.innerHTML = cuisine;
         option.value = cuisine;
         select.append(option);
