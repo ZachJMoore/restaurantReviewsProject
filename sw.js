@@ -1,5 +1,5 @@
 console.log("sw started");
-let staticCacheName = "cache-v1";
+let staticCacheName = "cache-v4";
 let itemsToCache = [
     "/",
     "index.html",
